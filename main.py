@@ -41,7 +41,7 @@ class UrbanRoutesPage:
     add_phone_number = (By.ID, 'phone')
     payment_method = (By.CLASS_NAME, 'pp-button.filled')
     add_card = (By_CLASS_NAME, 'pp-row.disabled')
-    card_number_field = (By.ID, 'number')
+    card_number_field = (By.CSS_SELECTOR, 'number') #Corrección: Se agrega elemento CSS
     card_code_field = (By.ID, 'code')
     card_wrapper = (By.CLASS_NAME, 'card-wrapper')
     add_button = (By.XPATH, '//button[text()='Agregar']')
@@ -127,40 +127,52 @@ class TestUrbanRoutes:
         self.driver.get(data.urban_routes_url)
         routes_page = UrbanRoutesPage(self.driver)
         routes_page.select_comfort()
+        selected_tariff = self.driver.find_element(*self.comfort_tariff).is_selected()
+        assert selected_tariff, "La tarifa de confort no está seleccionada correctamente." #Corrección: Se agrega función de assert
 
     def test_set_phone_number(self):
         self.driver.get(data.urban_routes_url)
         routes_page = UrbanRoutesPage(self.driver)
         routes_page.click_phone_field()
+        phone_number = data.phone_number
         routes_page.set_phone(phone_number)
         retrieve_phone_code(driver)
+        assert routes_page.set_phone() == phone_number #Corrección: Se agrega función de assert
 
     def test_add_payment_card(self):
         self.driver.get(data.urban_routes_url)
         routes_page = UrbanRoutesPage(self.driver)
         routes_page.select_payment_method()
         routes_page.add_payment_card()
+        card_number = data.card_number
+        card_code = data.card_code
         routes_page.add_card_number(card_number)
         routes_page.add_cvv_code(card_code)
         routes_page.activate_add_button()
         routes_page.click_add_button()
+        assert routes_page.add_card_number() == card_number #Corrección: Se agrega función de assert
+        assert routes_page.add_cvv_code() == card_code #Corrección: Se agrega función de assert
 
     def test_add_driver_message(self):
         self.driver.get(data.urban_routes_url)
         routes_page = UrbanRoutesPage(self.driver)
         message_for_driver = data.message_for_driver
         routes_page.add_message_for_driver(message_for_driver)
+        assert routes_page.add_message_for_driver() == message_for_driver #Corrección: Se agrega función de assert
 
     def test_add_blanket_and_scarves(self):
         self.driver.get(data.urban_routes_url)
         routes_page = UrbanRoutesPage(self.driver)
         routes_page.click_toggle()
+        assert self.driver.find_element(*self.blanket_and_scarves_element).is_selected(), "Las mantas y bufandas no se han agregado correctamente." #Corrección: Se agrega función de assert
 
     def test_add_ice_cream(self):
         self.driver.get(data.urban_routes_url)
         routes_page = UrbanRoutesPage(self.driver)
         routes_page.add_ice_cream()
         routes_page.add_ice_cream()
+        current_count = routes_page.get_ice_cream_count()
+        assert current_count == 2, f"Se esperaban 2 helados, pero se encontraron {current_count}." #Corrección: Se agrega función de assert
 
     def test_modal_appearance(self):
         self.driver.get(data.urban_routes_url)

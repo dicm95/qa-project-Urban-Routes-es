@@ -1,3 +1,4 @@
+### Daniela Contreras Cohort 22
 # Proyecto Urban Routes 
 
 ### Contenido
@@ -50,5 +51,5 @@ En este proyecto probaremos la funcionalidad de la aplicación Urban Routes, pri
 
 - Ejecuta todas las pruebas del proyecto a través de la terminal de PyCharm: escribe pytest main.py en la terminal.
 - Ejecuta todas las pruebas a través de la interfaz de PyCharm haciendo clic en el botón con un triángulo verde en la parte superior.
-  - Asegúrate de ejecutarlas en el archivo correcto, una forma sencilla de hacer esto es ir al archivo y seleccionar "Current File" antes de hacer clic en el botón con un triángulo verde.
+- Asegúrate de ejecutarlas en el archivo correcto, una forma sencilla de hacer esto es ir al archivo y seleccionar "Current File" antes de hacer clic en el botón con un triángulo verde.
 - Otra forma de ejecutar las pruebas es haciendo clic en las flechas verdes junto a las pruebas en el código.
