@@ -44,7 +44,7 @@ class UrbanRoutesPage:
     card_number_field = (By.CSS_SELECTOR, 'number') #Corrección: Se agrega elemento CSS
     card_code_field = (By.ID, 'code')
     card_wrapper = (By.CLASS_NAME, 'card-wrapper')
-    add_button = (By.XPATH, '//button[text()='Agregar']')
+    add_button = (By.XPATH, "//button[text()='Agregar']")
     comment_field = (By.ID, 'comment')
     toggle_switch = (By.CLASS_NAME, 'switch-input')
     ice_cream_counter_plus = (By.XPATH, '//div[contains(text(), 'Helado')]//following::div[contains(@class, 'counter-plus')]')
